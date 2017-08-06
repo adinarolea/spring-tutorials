@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 public interface WeightCalculator {
     /**
      * calculates the ideal weight of a person, based on age,height and gender
-     * if the input person object is null, or the above fields are not declared, {@link WeightCalculatorException} exception will be thrown
+     * if the input person object is null, or the above fields are not declared, {@link IllegalArgumentException} exception will be thrown
      *
      * @param person
      * @return the ideal weight of the input {@link Person}
