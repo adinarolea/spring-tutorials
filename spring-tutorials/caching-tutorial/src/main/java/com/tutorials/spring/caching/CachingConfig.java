@@ -1,24 +1,25 @@
 package com.tutorials.spring.caching;
 
-import com.github.benmanes.caffeine.cache.Caffeine;
+import net.sf.ehcache.CacheManager;
+import net.sf.ehcache.config.CacheConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cache.caffeine.CaffeineCacheManager;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.Collections;
-import java.util.concurrent.TimeUnit;
 
 @Configuration
 @EnableCaching
 public class CachingConfig {
 
     @Bean
-    public CaffeineCacheManager caffeineCacheManager() {
-        CaffeineCacheManager cacheManager = new CaffeineCacheManager();
-        cacheManager.setCacheNames(Collections.singleton("api-cache"));
-        Caffeine<Object, Object> caffeine = Caffeine.newBuilder().maximumSize(5).expireAfterAccess(5, TimeUnit.MINUTES);
-        cacheManager.setCaffeine(caffeine);
-        return cacheManager;
+    public EhCacheCacheManager getCacheManager() {
+        CacheConfiguration cacheConfiguration = new CacheConfiguration();
+        cacheConfiguration.setName("api-cache");
+        cacheConfiguration.setMemoryStoreEvictionPolicy("LRU");
+        cacheConfiguration.setMaxEntriesLocalHeap(2);
+        cacheConfiguration.setMaxBytesLocalHeap("100K");
+        net.sf.ehcache.config.Configuration config = new net.sf.ehcache.config.Configuration();
+        config.addCache(cacheConfiguration);
+        return new EhCacheCacheManager(CacheManager.newInstance(config));
     }
 }
