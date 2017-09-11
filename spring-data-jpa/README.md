@@ -1,0 +1,2 @@
+To run this application, make sure you have a MySQL server running and a database schema named test.
+For more details regarding the code, please follow this tutorial : https://adinafometescu.wordpress.com/2017/03/14/spring-data-jpa-tutorial-with-mysql-server/
