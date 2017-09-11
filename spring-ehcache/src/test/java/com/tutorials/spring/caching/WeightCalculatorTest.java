@@ -71,21 +71,4 @@ public class WeightCalculatorTest {
         weightCalculator.getIdealWeight(person);
     }
 
-    @Test
-    public void testCacheMiss() {
-        Person person = new Person(23, BigDecimal.valueOf(1.73), FEMALE);
-        Person person1 = new Person(24, BigDecimal.valueOf(1.60), FEMALE);
-        Person person2 = new Person(25, BigDecimal.valueOf(1.80), MALE);
-
-        weightCalculator.getIdealWeight(person);
-        weightCalculator.getIdealWeight(person1);
-        weightCalculator.getIdealWeight(person2);
-
-        Cache cache = cacheManager.getCache("api-cache");
-        assertNull(cache.get(person));
-        assertNotNull(cache.get(person1));
-        assertNotNull(cache.get(person2));
-
-    }
-
 }

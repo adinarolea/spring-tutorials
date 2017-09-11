@@ -16,7 +16,6 @@ public class CachingConfig {
         CacheConfiguration cacheConfiguration = new CacheConfiguration();
         cacheConfiguration.setName("api-cache");
         cacheConfiguration.setMemoryStoreEvictionPolicy("LRU");
-        cacheConfiguration.setMaxEntriesLocalHeap(2);
         cacheConfiguration.setMaxBytesLocalHeap("100K");
         net.sf.ehcache.config.Configuration config = new net.sf.ehcache.config.Configuration();
         config.addCache(cacheConfiguration);
