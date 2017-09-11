@@ -1,4 +1,4 @@
-package com.spring.data.tutorial.introduction;
+package com.spring.data.tutorial.jpa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
