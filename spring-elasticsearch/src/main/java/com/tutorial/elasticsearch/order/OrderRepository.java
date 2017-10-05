@@ -1,4 +1,4 @@
-package com.tutorial.elasticsearch;
+package com.tutorial.elasticsearch.order;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;

@@ -1,4 +1,4 @@
-package com.tutorial.elasticsearch;
+package com.tutorial.elasticsearch.order;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
