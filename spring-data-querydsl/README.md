@@ -1,0 +1,1 @@
+To run this application, make sure you have a MySQL server running and a database schema named test.
