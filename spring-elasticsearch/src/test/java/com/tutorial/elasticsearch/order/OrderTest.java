@@ -1,5 +1,6 @@
 package com.tutorial.elasticsearch.order;
 
+import com.tutorial.elasticsearch.order.repository.OrderRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

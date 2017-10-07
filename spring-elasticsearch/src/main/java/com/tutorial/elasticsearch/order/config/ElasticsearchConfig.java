@@ -1,4 +1,4 @@
-package com.tutorial.elasticsearch;
+package com.tutorial.elasticsearch.order.config;
 
 import org.elasticsearch.common.settings.Settings;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +11,7 @@ import static org.elasticsearch.node.NodeBuilder.nodeBuilder;
 
 @Configuration
 @EnableElasticsearchRepositories
-public class Config {
+public class ElasticsearchConfig {
 
     @Bean
     public ElasticsearchOperations elasticsearchTemplate() {
