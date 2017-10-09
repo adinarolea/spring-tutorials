@@ -1,4 +1,4 @@
-package com.tutorial.elasticsearch.order.config;
+package com.tutorial.elasticsearch.movie.config;
 
 import org.elasticsearch.common.settings.Settings;
 import org.springframework.context.annotation.Bean;

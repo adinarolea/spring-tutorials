@@ -4,9 +4,9 @@ $(document).ready( function () {
         type: "GET",
         headers: {Accept: 'application/json'},
         dataType: 'json',
-        url: "/orders,
+        url: "/movies",
         success: function(data) {
-            $("#orders-table").bootstrapTable('load', data);
+            $("#movies-table").bootstrapTable('load', data);
         }
     });
 });

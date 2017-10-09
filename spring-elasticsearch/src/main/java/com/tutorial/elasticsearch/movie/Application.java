@@ -1,6 +1,6 @@
-package com.tutorial.elasticsearch.order;
+package com.tutorial.elasticsearch.movie;
 
-import com.tutorial.elasticsearch.order.config.ElasticsearchConfig;
+import com.tutorial.elasticsearch.movie.config.ElasticsearchConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;

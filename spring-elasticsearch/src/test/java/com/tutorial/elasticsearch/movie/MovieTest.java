@@ -1,6 +1,6 @@
-package com.tutorial.elasticsearch.order;
+package com.tutorial.elasticsearch.movie;
 
-import com.tutorial.elasticsearch.order.repository.OrderRepository;
+import com.tutorial.elasticsearch.movie.repository.MovieRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,32 +16,32 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class OrderTest {
+public class MovieTest {
     @Autowired
     ElasticsearchTemplate elasticsearchTemplate;
 
     @Autowired
-    OrderRepository orderRepository;
+    MovieRepository movieRepository;
 
     @Before
     public void before() {
-        elasticsearchTemplate.deleteIndex(Order.class);
-        elasticsearchTemplate.createIndex(Order.class);
-        elasticsearchTemplate.putMapping(Order.class);
-        elasticsearchTemplate.refresh(Order.class);
+        elasticsearchTemplate.deleteIndex(Movie.class);
+        elasticsearchTemplate.createIndex(Movie.class);
+        elasticsearchTemplate.putMapping(Movie.class);
+        elasticsearchTemplate.refresh(Movie.class);
     }
 
     @Test
     public void testSave() {
-        orderRepository.save(new Order());
-        assertThat(orderRepository.findAll().getTotalElements(), is(1L));
+        movieRepository.save(new Movie());
+        assertThat(movieRepository.findAll().getTotalElements(), is(1L));
     }
 
     @Test
     public void testPage() {
-        orderRepository.save(new Order());
-        orderRepository.save(new Order());
-        Page<Order> page = orderRepository.findAll(new PageRequest(0, 1));
+        movieRepository.save(new Movie());
+        movieRepository.save(new Movie());
+        Page<Movie> page = movieRepository.findAll(new PageRequest(0, 1));
         assertThat(page.getContent().size(), is(1));
     }
 }
