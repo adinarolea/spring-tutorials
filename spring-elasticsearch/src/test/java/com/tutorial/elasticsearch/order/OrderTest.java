@@ -38,7 +38,7 @@ public class OrderTest {
     }
 
     @Test
-    public void testPage(){
+    public void testPage() {
         orderRepository.save(new Order());
         orderRepository.save(new Order());
         Page<Order> page = orderRepository.findAll(new PageRequest(0, 1));
