@@ -21,10 +21,10 @@ public class MoviesController {
     }
 
 
-    @GetMapping("/movies")
+    @GetMapping(value = "/movies", produces = "application/json")
     @ResponseBody
     public List<MovieData> getMovies() {
-        return movieService.getAllMovies().stream().map(order -> new MovieData(order)).collect(Collectors.toList());
+        return movieService.getAllMovies().stream().map(MovieData::new).collect(Collectors.toList());
     }
 
 }
