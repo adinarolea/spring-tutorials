@@ -1,24 +1,23 @@
 package com.tutorial.elasticsearch.movie.controller;
 
-import com.tutorial.elasticsearch.movie.Movie;
+import com.tutorial.elasticsearch.movie.data.Movie;
 
-import java.time.format.DateTimeFormatter;
-
+/**
+ * wrapper for a {@link Movie} object, used for display purpose
+ */
 public class MovieData {
+
     private String id;
-
     private String title;
-
     private String director;
-
     private String rating;
 
 
     public MovieData(Movie movie) {
         this.id = movie.getId();
-        this.title= movie.getTitle();
+        this.title = movie.getTitle();
         this.director = movie.getDirector();
-        this.rating= String.valueOf(movie.getRating());
+        this.rating = String.valueOf(movie.getRating());
     }
 
     public String getId() {

@@ -8,7 +8,7 @@ $(document).ready( function () {
         sidePagination:'server',
         pagination:true,
         queryParamsType : '',
-        pageList: [5, 10, 25, 50, 100, 200]
+        pageList: [5, 10, 25, 50]
 
     });
 });
