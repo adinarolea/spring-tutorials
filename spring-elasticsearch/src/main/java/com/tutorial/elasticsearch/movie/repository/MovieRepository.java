@@ -7,4 +7,6 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
 public interface MovieRepository extends ElasticsearchRepository<Movie, String> {
 
     Page<Movie> findAll();
+
+    void deleteById(String id);
 }

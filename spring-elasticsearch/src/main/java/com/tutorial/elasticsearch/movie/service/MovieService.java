@@ -30,7 +30,7 @@ public class MovieService implements MovieProvider {
     }
 
     @Override
-    public int countElements() {
+    public int countMovies() {
         return getAllMovies().size();
     }
 
@@ -41,6 +41,11 @@ public class MovieService implements MovieProvider {
             return Collections.emptyList();
         }
         return moviePage.getContent();
+    }
+
+    @Override
+    public void removeMovie(String id) {
+        movieRepository.deleteById(id);
     }
 
     /**
