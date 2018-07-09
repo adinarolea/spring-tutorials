@@ -13,7 +13,7 @@ public class CoffeeController implements CoffeeClient{
     @Lazy
     private EurekaClient eurekaClient;
 
-    @Value("${test.config}")
+    @Value("${test.config:test}")
     String config;
 
     @Value("${spring.application.name}")

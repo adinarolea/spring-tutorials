@@ -19,6 +19,13 @@
         <module>spring-cloud-client</module>
         <module>spring-cloud-client-consumer</module>
     </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+    </dependencies>
     <properties>
         <spring-cloud-dependencies.version>Brixton.SR7</spring-cloud-dependencies.version>
         <spring-cloud-starter-eureka.version>1.4.5.RELEASE</spring-cloud-starter-eureka.version>
