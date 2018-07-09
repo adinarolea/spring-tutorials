@@ -13,11 +13,14 @@ public class CoffeeController implements CoffeeClient{
     @Lazy
     private EurekaClient eurekaClient;
 
+    @Value("${test.config}")
+    String config;
+
     @Value("${spring.application.name}")
     private String applicationName;
 
     @Override
     public String getCoffee() {
-        return String.format("Hello from '%s'!", eurekaClient.getApplication(applicationName).getName());
+        return String.format("Hello from '%s' %s!", eurekaClient.getApplication(applicationName).getName(),config);
     }
 }
