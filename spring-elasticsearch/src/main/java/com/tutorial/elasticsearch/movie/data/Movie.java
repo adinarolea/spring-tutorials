@@ -1,4 +1,4 @@
-package com.tutorial.elasticsearch.movie;
+package com.tutorial.elasticsearch.movie.data;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;

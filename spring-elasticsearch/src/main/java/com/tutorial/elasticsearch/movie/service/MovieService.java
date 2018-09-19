@@ -1,6 +1,6 @@
 package com.tutorial.elasticsearch.movie.service;
 
-import com.tutorial.elasticsearch.movie.Movie;
+import com.tutorial.elasticsearch.movie.data.Movie;
 import com.tutorial.elasticsearch.movie.repository.MovieRepository;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +15,12 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-public class MovieService {
+public class MovieService implements MovieProvider {
 
     @Autowired
     MovieRepository movieRepository;
 
+    @Override
     public List<Movie> getAllMovies() {
         Page<Movie> moviePage = movieRepository.findAll();
         if (moviePage == null) {
@@ -28,6 +29,12 @@ public class MovieService {
         return moviePage.getContent();
     }
 
+    @Override
+    public int countMovies() {
+        return getAllMovies().size();
+    }
+
+    @Override
     public List<Movie> getAllMovies(Pageable pageable) {
         Page<Movie> moviePage = movieRepository.findAll(pageable);
         if (moviePage == null) {
@@ -36,8 +43,19 @@ public class MovieService {
         return moviePage.getContent();
     }
 
+    @Override
+    public void removeMovie(String id) {
+        movieRepository.deleteById(id);
+    }
+
+    /**
+     * fills the repository with mock data on startup
+     */
     @EventListener(ContextRefreshedEvent.class)
     public void addMovies() {
+        if (!movieRepository.findAll().getContent().isEmpty()) {
+            return;
+        }
         for (int i = 0; i < 50; i++) {
             Movie movie = new Movie();
             movie.setDirector(RandomStringUtils.randomAlphanumeric(5));
