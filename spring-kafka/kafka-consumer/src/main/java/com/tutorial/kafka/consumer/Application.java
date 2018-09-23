@@ -1,5 +1,6 @@
 package com.tutorial.kafka.consumer;
 
+import com.tutorial.kafka.consumer.config.KafkaConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
