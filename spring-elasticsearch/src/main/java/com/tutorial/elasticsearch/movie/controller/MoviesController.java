@@ -4,10 +4,7 @@ import com.tutorial.elasticsearch.movie.service.MovieProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Collectors;
 
@@ -29,9 +26,9 @@ public class MoviesController {
         return new MovieResponse(movieProvider.getAllMovies(PageRequest.of(pageNumber - 1, pageSize)).stream().map(MovieData::new).collect(Collectors.toList()), movieProvider.countMovies());
     }
 
-    @PostMapping(value = "/remove/movie", produces = "application/json")
+    @DeleteMapping(value = "/movie/{id}", produces = "application/json")
     @ResponseBody
-    public void removeMovie(@RequestParam(value = "id") String id) {
+    public void removeMovie(@PathVariable(value = "id") String id) {
         movieProvider.removeMovie(id);
     }
 }

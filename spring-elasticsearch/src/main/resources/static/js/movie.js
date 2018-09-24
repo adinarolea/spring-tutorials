@@ -5,8 +5,8 @@ function deleteButtonFormatter(value, row, index){
 
 function deleteMovie(id){
     $.ajax({
-        url: "/remove/movie?id="+ id,
-        type: "POST",
+        url: "/movie/"+ id,
+        type: "DELETE",
         cache: false,
         error: function (e) {
             alert(e);
