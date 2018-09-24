@@ -26,7 +26,7 @@ public class MoviesController {
     @GetMapping(value = "/movies", produces = "application/json")
     @ResponseBody
     public MovieResponse getMovies(@RequestParam(value = "pageNumber") int pageNumber, @RequestParam(value = "pageSize") int pageSize) {
-        return new MovieResponse(movieProvider.getAllMovies(new PageRequest(pageNumber - 1, pageSize)).stream().map(MovieData::new).collect(Collectors.toList()), movieProvider.countMovies());
+        return new MovieResponse(movieProvider.getAllMovies(PageRequest.of(pageNumber - 1, pageSize)).stream().map(MovieData::new).collect(Collectors.toList()), movieProvider.countMovies());
     }
 
     @PostMapping(value = "/remove/movie", produces = "application/json")
