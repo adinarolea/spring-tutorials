@@ -6,9 +6,6 @@ services:
     environment:
       - cluster.name=elasticsearch
       - bootstrap.memory_lock=true
-      - http.host=0.0.0.0
-      - transport.host=0.0.0.0
-      - xpack.security.enabled=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
       memlock:
