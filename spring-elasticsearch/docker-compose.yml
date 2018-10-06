@@ -1,12 +1,13 @@
 version: '2.2'
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.2
     container_name: elasticsearch
     environment:
       - cluster.name=elasticsearch
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.zen.ping.unicast.hosts=elasticsearch"
     ulimits:
       memlock:
         soft: -1
@@ -16,13 +17,15 @@ services:
     ports:
       - 9200:9200
       - 9300:9300
-    networks:
-      - esnet
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.4.2
+    container_name: kibana
+    environment:
+      - SERVER_NAME=localhost
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - XPACK.MONITORING.COLLECTION.ENABLED=true
+    ports:
+      - 5601:5601
 volumes:
   esdata1:
     driver: local
-  esdata2:
-    driver: local
-
-networks:
-  esnet:
