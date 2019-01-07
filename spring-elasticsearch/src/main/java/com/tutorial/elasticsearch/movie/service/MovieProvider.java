@@ -14,7 +14,7 @@ public interface MovieProvider {
     /**
      * @return the total number of {@link Movie} objects
      */
-    int countMovies();
+    long countMovies();
 
     /**
      * return the list of {@link Movie} objects for input {@link Pageable} request
