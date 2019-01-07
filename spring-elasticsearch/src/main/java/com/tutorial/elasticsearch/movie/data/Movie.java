@@ -2,7 +2,6 @@ package com.tutorial.elasticsearch.movie.data;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
-import sun.nio.cs.ext.Big5;
 
 import java.math.BigDecimal;
 
