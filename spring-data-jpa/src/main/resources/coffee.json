@@ -1,0 +1,17 @@
+[
+  {
+    "id":"1",
+    "origin":"Brazil",
+    "price":22.3
+  },
+  {
+    "id":"2",
+    "origin":"America",
+    "price":19.3
+  },
+  {
+    "id":"3",
+    "origin":"Romania",
+    "price":5.9
+  }
+]

@@ -9,9 +9,11 @@ import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
+import static junit.framework.TestCase.assertTrue;
 
 /**
  * This test has the purpose to verify if the search with a predicate returns the correct result
@@ -34,8 +36,9 @@ public class SearchOnePurseTest {
     public void searchOneByWidth() {
         PursePredicateBuilder pursePredicateBuilder = new PursePredicateBuilder();
         pursePredicateBuilder.withWidth(BigDecimal.valueOf(5.7));
-        Purse purse = purseRepository.findOne(pursePredicateBuilder.build());
-        assertNotNull(purse);
+        Optional<Purse> purseOpt = purseRepository.findOne(pursePredicateBuilder.build());
+        assertTrue(purseOpt.isPresent());
+        Purse purse = purseOpt.get();
         assertEquals(0, BigDecimal.valueOf(5.7).compareTo(purse.getWidth()));
     }
 
@@ -46,8 +49,9 @@ public class SearchOnePurseTest {
     public void searchOneByLength() {
         PursePredicateBuilder pursePredicateBuilder = new PursePredicateBuilder();
         pursePredicateBuilder.withLength(BigDecimal.valueOf(10.5));
-        Purse purse = purseRepository.findOne(pursePredicateBuilder.build());
-        assertNotNull(purse);
+        Optional<Purse> purseOpt = purseRepository.findOne(pursePredicateBuilder.build());
+        assertTrue(purseOpt.isPresent());
+        Purse purse = purseOpt.get();
         assertEquals(0, BigDecimal.valueOf(10.5).compareTo(purse.getLength()));
     }
 
@@ -58,8 +62,9 @@ public class SearchOnePurseTest {
     public void searchOneByPurseType() {
         PursePredicateBuilder pursePredicateBuilder = new PursePredicateBuilder();
         pursePredicateBuilder.withPurseType(Purse.PurseType.CLASSY);
-        Purse purse = purseRepository.findOne(pursePredicateBuilder.build());
-        assertNotNull(purse);
+        Optional<Purse> purseOpt = purseRepository.findOne(pursePredicateBuilder.build());
+        assertTrue(purseOpt.isPresent());
+        Purse purse = purseOpt.get();
         assertEquals(Purse.PurseType.CLASSY, purse.getPurseType());
     }
 
@@ -72,8 +77,9 @@ public class SearchOnePurseTest {
         pursePredicateBuilder
                 .withLength(BigDecimal.valueOf(13.5))
                 .withWidth(BigDecimal.valueOf(12.1));
-        Purse purse = purseRepository.findOne(pursePredicateBuilder.build());
-        assertNotNull(purse);
+        Optional<Purse> purseOpt = purseRepository.findOne(pursePredicateBuilder.build());
+        assertTrue(purseOpt.isPresent());
+        Purse purse = purseOpt.get();
         assertEquals(0, BigDecimal.valueOf(13.5).compareTo(purse.getLength()));
         assertEquals(0, BigDecimal.valueOf(12.1).compareTo(purse.getWidth()));
 

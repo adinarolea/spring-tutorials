@@ -1,8 +1,11 @@
-package com.spring.data.tutorial.jpa;
+package com.spring.data.tutorial.jpa.coffee;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
 @Table(name = "coffee")
@@ -42,19 +45,14 @@ public class Coffee implements Serializable{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Coffee coffee = (Coffee) o;
-
-        if (id != null ? !id.equals(coffee.id) : coffee.id != null) return false;
-        if (price != null ? price.compareTo(coffee.price) != 0 : coffee.price != null) return false;
-        return origin != null ? origin.equals(coffee.origin) : coffee.origin == null;
+        return Objects.equals(id, coffee.id) &&
+                Objects.equals(price, coffee.price) &&
+                Objects.equals(origin, coffee.origin);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (price != null ? price.hashCode() : 0);
-        result = 31 * result + (origin != null ? origin.hashCode() : 0);
-        return result;
+        return Objects.hash(id, price, origin);
     }
 }
