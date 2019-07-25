@@ -30,8 +30,8 @@ public class MovieService implements MovieProvider {
     }
 
     @Override
-    public int countMovies() {
-        return getAllMovies().size();
+    public long countMovies() {
+        return movieRepository.count();
     }
 
     @Override

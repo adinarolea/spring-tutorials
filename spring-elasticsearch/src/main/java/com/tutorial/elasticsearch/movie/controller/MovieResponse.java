@@ -7,16 +7,16 @@ import java.util.List;
  */
 public class MovieResponse {
 
-    private int total;
+    private long total;
 
     private List<MovieData> rows;
 
-    public MovieResponse(List<MovieData> rows, int total) {
+    public MovieResponse(List<MovieData> rows, long total) {
         this.total = total;
         this.rows = rows;
     }
 
-    public int getTotal() {
+    public long getTotal() {
         return total;
     }
 

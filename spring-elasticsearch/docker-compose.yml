@@ -5,7 +5,7 @@ services:
     container_name: elasticsearch
     environment:
       - cluster.name=elasticsearch
-      - bootstrap.memory_lock=true
+      - bootstrap.memory_lock=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - "discovery.zen.ping.unicast.hosts=elasticsearch"
     ulimits:
