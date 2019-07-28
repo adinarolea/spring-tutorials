@@ -25,6 +25,7 @@
         <module>spring-kafka</module>
         <module>spring-state-machine</module>
         <module>spring-webflux</module>
+        <module>spring-tutorial-common</module>
     </modules>
     <build>
         <plugins>
