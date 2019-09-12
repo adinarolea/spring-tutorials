@@ -26,6 +26,7 @@
         <module>spring-state-machine</module>
         <module>spring-webflux</module>
         <module>spring-tutorial-common</module>
+        <module>spring-boot-jwt</module>
     </modules>
     <build>
         <plugins>
