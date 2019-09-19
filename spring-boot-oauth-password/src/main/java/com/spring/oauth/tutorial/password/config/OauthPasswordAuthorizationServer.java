@@ -16,39 +16,37 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @EnableAuthorizationServer
 public class OauthPasswordAuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
-	public static final String CLIENT = "client";
-	public static final String SECRET = "secret";
-	@Autowired
-	private JwtAccessTokenConverter jwtAccessTokenConverter;
+    public static final String CLIENT = "client";
+    public static final String SECRET = "secret";
+    @Autowired
+    PasswordEncoder passwordEncoder;
+    @Autowired
+    private JwtAccessTokenConverter jwtAccessTokenConverter;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
-	@Autowired
-	private AuthenticationManager authenticationManager;
+    @Override
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
+        endpoints
 
-	@Autowired
-	PasswordEncoder passwordEncoder;
+                .tokenStore(new JwtTokenStore(jwtAccessTokenConverter))
+                .authenticationManager(authenticationManager)
+                .accessTokenConverter(jwtAccessTokenConverter);
+    }
 
-	@Override
-	public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-		endpoints
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+        oauthServer.allowFormAuthenticationForClients();
+    }
 
-				.tokenStore(new JwtTokenStore(jwtAccessTokenConverter))
-				.authenticationManager(authenticationManager)
-				.accessTokenConverter(jwtAccessTokenConverter);
-	}
-
-	@Override
-	public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-		oauthServer.allowFormAuthenticationForClients();
-	}
-
-	@Override
-	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		clients
-				.inMemory()
-				.withClient(CLIENT)
-				.secret(passwordEncoder.encode(SECRET))
-				.authorizedGrantTypes("password", "refresh_token")
-				.scopes("read", "write");
-	}
+    @Override
+    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        clients
+                .inMemory()
+                .withClient(CLIENT)
+                .secret(passwordEncoder.encode(SECRET))
+                .authorizedGrantTypes("password", "refresh_token")
+                .scopes("read", "write");
+    }
 
 }
