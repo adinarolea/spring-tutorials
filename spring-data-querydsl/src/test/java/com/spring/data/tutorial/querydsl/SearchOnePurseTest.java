@@ -1,33 +1,20 @@
 package com.spring.data.tutorial.querydsl;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlGroup;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import com.spring.data.tutorial.querydsl.model.Purse;
+import com.spring.data.tutorial.querydsl.model.PursePredicateBuilder;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.Optional;
 
 import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
 
 /**
  * This test has the purpose to verify if the search with a predicate returns the correct result
  * The input data should be only one purse that matches the input predicate
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@SqlGroup({
-        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/initPurseTable.sql")
-})
-public class SearchOnePurseTest {
-
-    @Autowired
-    PurseRepository purseRepository;
+public class SearchOnePurseTest extends AbstractPurseTest {
 
     /**
      * predicate: width = 5.7

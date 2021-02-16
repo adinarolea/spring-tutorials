@@ -1,8 +1,6 @@
-package com.spring.data.tutorial.querydsl;
+package com.spring.data.tutorial.querydsl.model;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.NumberPath;
-import com.querydsl.core.types.dsl.PathBuilder;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -13,16 +11,20 @@ import java.util.List;
  */
 public class PursePredicateBuilder {
 
-    List<BooleanExpression> predicates = new ArrayList<>();
+    private List<BooleanExpression> predicates = new ArrayList<>();
+    private QPurse qPurse = QPurse.purse;
 
     /**
      * adds {@link Purse#width} as a predicate for the resulted query
+     *
      * @return the current instance of the builder
      */
     public PursePredicateBuilder withWidth(BigDecimal width) {
-        PathBuilder<Purse> entityPath = new PathBuilder<>(Purse.class, "purse");
-        NumberPath<BigDecimal> numberPath = entityPath.getNumber("width", BigDecimal.class);
-        predicates.add(numberPath.eq(width));
+        //optional parameter
+        if (width == null) {
+            return this;
+        }
+        predicates.add(qPurse.width.eq(width));
         return this;
     }
     /**
@@ -30,7 +32,9 @@ public class PursePredicateBuilder {
      * @return the current instance of the builder
      */
     public PursePredicateBuilder withLength(BigDecimal length) {
-        QPurse qPurse = QPurse.purse;
+        if (length == null) {
+            return this;
+        }
         predicates.add(qPurse.length.eq(length));
         return this;
     }
@@ -39,6 +43,9 @@ public class PursePredicateBuilder {
      * @return the current instance of the builder
      */
     public PursePredicateBuilder withPurseType(Purse.PurseType purseType) {
+        if (purseType == null) {
+            return this;
+        }
         QPurse qPurse = QPurse.purse;
         predicates.add(qPurse.purseType.eq(purseType));
         return this;

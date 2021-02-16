@@ -1,6 +1,7 @@
-package com.spring.data.tutorial.querydsl;
+package com.spring.data.tutorial.querydsl.repository;
 
 import com.querydsl.core.types.Predicate;
+import com.spring.data.tutorial.querydsl.model.Purse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
